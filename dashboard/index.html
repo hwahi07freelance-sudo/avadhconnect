@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - BizHub Directory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+            background-color: var(--background-color);
+        }
+
+        .sidebar {
+            width: 250px;
+            background: var(--surface-color);
+            border-right: 1px solid var(--border-color);
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .sidebar-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background-color: rgba(99, 102, 241, 0.1);
+            color: var(--primary-color);
+        }
+
+        .stat-card {
+            background: var(--surface-color);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="../index.html" class="logo text-gradient"
+                style="margin-bottom: 2rem; padding-left: 1rem; text-decoration: none;">BizHub Directory</a>
+            <nav>
+                <a href="index.html" class="sidebar-link active">📊 Overview</a>
+                <a href="manage-listing.html" class="sidebar-link">✏️ My Listing</a>
+                <a href="#" class="sidebar-link">📈 Analytics</a>
+                <a href="#" class="sidebar-link">⚙️ Settings</a>
+                <div
+                    style="margin-top: auto; border-top: 1px solid var(--border-color); margin-top: 2rem; padding-top: 1rem;">
+                    <button onclick="logout()" class="sidebar-link"
+                        style="width: 100%; text-align: left; background: none; border: none; cursor: pointer;">🚪
+                        Logout</button>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center;">
+                <h1 id="welcome-msg">Welcome Back</h1>
+                <a href="manage-listing.html" class="btn btn-primary">✏️ Edit Listing</a>
+            </header>
+
+            <div class="grid-cols-3" style="margin-bottom: 2rem;">
+                <div class="stat-card">
+                    <h3 style="color: var(--text-secondary); font-size: 0.875rem;">Listing Status</h3>
+                    <p id="listing-status" style="font-size: 1.5rem; font-weight: 700; color: var(--warning-color);">
+                        Loading...</p>
+                </div>
+                <div class="stat-card">
+                    <h3 style="color: var(--text-secondary); font-size: 0.875rem;">Total Views</h3>
+                    <p id="listing-views" style="font-size: 1.5rem; font-weight: 700;">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3 style="color: var(--text-secondary); font-size: 0.875rem;">Messages</h3>
+                    <p style="font-size: 1.5rem; font-weight: 700;">0</p>
+                </div>
+            </div>
+
+            <section class="stat-card">
+                <h2 style="margin-bottom: 1rem;">Recent Activity</h2>
+                <p style="color: var(--text-secondary);">No recent activity to show.</p>
+            </section>
+        </main>
+    </div>
+
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+
+</html>
